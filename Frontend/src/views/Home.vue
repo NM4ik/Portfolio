@@ -16,22 +16,17 @@
       <router-link to="/projects">
         <my-button>Projects</my-button>
       </router-link>
-      <router-link to="/projects">
-        <my-button>Resume</my-button>
-      </router-link>
+      <a :href="require('../assets/images/Avatar.jpg')" download="Avatar.jpg"><my-button>Resume</my-button></a>
     </div>
-    <home>hello</home>
   </div>
 </template>
 
 <script>
 import MyButton from "@/components/UI/MyButton";
-import home from "@/components/home";
 export default {
   name: "Home",
   components: {
     MyButton,
-    home,
   },
   data: () => ({
     arrowRight: require("@/assets/images/icons/arrowRight.svg"),

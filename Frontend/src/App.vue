@@ -58,15 +58,15 @@ export default {
     width: 15px;
   }
   ::-webkit-scrollbar-track{
-    background: black;
+    background: white;
   }
   ::-webkit-scrollbar-thumb{
-    background: #00B74A;
+    background: #FF9321;
     border-radius: 8px;
-    border: 3px solid black;
+    border: 3px solid white;
   }
   ::-webkit-scrollbar-thumb:hover{
-    background: #00973c;
+    background: #FF8709;
   }
 
 

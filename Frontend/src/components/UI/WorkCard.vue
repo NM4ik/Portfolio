@@ -52,7 +52,8 @@ export default {
 
 <style lang="sass" scoped>
 .backside__title
-  font-weight: 900
+  font-weight: 600
+  letter-spacing: 3px
   font-size: 30px
   margin-top: 15px
   margin-bottom: 30px

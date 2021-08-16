@@ -26,9 +26,6 @@
           <div class="background"></div>
         </div>
       </div>
-      <div class="button">
-        <my-button>RESUME</my-button>
-      </div>
       <div class="skills">
         <div class="skills__title">Skills</div>
         <skills>
@@ -121,6 +118,7 @@ export default {
       font-size: 140px
       color: #B1B1B1
     span
+      line-height: 1.5
       font-size: 20px
       font-weight: 400
       color: black
