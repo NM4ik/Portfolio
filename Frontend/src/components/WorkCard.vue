@@ -1,56 +1,86 @@
 <template>
-  <div class="card">
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <div class="card__inner">
-      <div
-        class="card__face card__face--front"
-        style="background: linear-gradient(360deg, #9ebd13 0%, #008552 100%);"
-      >
-        <h1>developer card</h1>
-      </div>
-      <div class="card__face card__face--back">
-        <h1 class="backside__title">backside info</h1>
-        <p class="backside__info">
-          carblok - multi-page online store on auto parts. My work: design and
-          identity development. Layout of a multi-page site. Working with SEO
-        </p>
-        <p class="backside__stack">
-          HTML/CSS/JS/WORDPRESS
-        </p>
+  <div>
+    <div class="cards">
+      <!-- <div v-for="work in works" :key="work.title"> -->
+      <div class="card" v-for="work in works" :key="work.title">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <div class="card__inner">
+          <div
+            class="card__face card__face--front"
+            style="background: lin ear-gradient(360deg, #9ebd13 0%, #008552 100%);"
+          >
+            <h1>{{ work.title }}</h1>
+          </div>
+          <div class="card__face card__face--back">
+            <h1 class="backside__title">backside info</h1>
+            <p class="backside__info">
+              {{ work.backside_subtitle }}
+            </p>
+            <p class="backside__stack">
+              {{ work.backside_stack }}
+            </p>
 
-        <div class="backside__links">
-          <a href="">Learn more</a>
+            <div class="backside__links">
+              <a href="">Learn more</a>
 
-          <div class="backside__icons">
-            <a href=""><fa class="fa-gh icon" :icon="['fab', 'github']"/></a>
-            <a href=""
-              ><fa class="fa-exl icon" :icon="['fas', 'external-link-alt']"
-            /></a>
+              <div class="backside__icons">
+                <a href=""
+                  ><fa class="fa-gh icon" :icon="['fab', 'github']"
+                /></a>
+                <a href=""
+                  ><fa class="fa-exl icon" :icon="['fas', 'external-link-alt']"
+                /></a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+      <!-- </div> -->
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  props: ["works"],
+
   mounted() {
     const card = document.querySelectorAll(".card__inner");
+    if(card) console.log('hi')
 
     for (let i = 0; i < card.length; i++) {
       card[i].onclick = function(e) {
         card[i].classList.toggle("is-flipped");
       };
     }
+
+    // const cards = document.querySelector(".cards");
+    // cards.getElementsByClassName("card")[0].addEventListener("click", function() {
+    //     this.querySelector(".card__inner").classList.toggle("is-flipped");
+    // });
+
+    // const cards = document.querySelector(".cards");
+    // cards.querySelectorAll(".card").forEach(function(card) {
+    //   card.addEventListener("click", function() {
+    //     this.querySelector(".card__inner").classList.toggle("is-flipped");
+    //   });
+    // });
   },
 };
 </script>
 
 <style lang="sass" scoped>
+.cards
+  display: flex
+  justify-content: space-around
+  align-items: center
+  flex-wrap: wrap
+  transition: transform 0.1s
+  will-change: transform
+
 .backside__title
   font-weight: 600
   letter-spacing: 3px

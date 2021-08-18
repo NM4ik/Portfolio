@@ -1,15 +1,23 @@
+
 import Vue from 'vue'
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+
+
+const store = new Vuex.Store({
   state: {
+    backendUrl: "http://127.0.0.1:8000/"
   },
-  mutations: {
+  mutations: {},
+  actions: {},
+  modules: {},
+  getters:{
+    getServerUrl: state => {
+      return state.backendUrl
+    }
   },
-  actions: {
-  },
-  modules: {
-  }
 })
+
+export default store

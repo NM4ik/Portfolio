@@ -19,7 +19,7 @@ class Person(models.Model):
 
 
 class Work(models.Model):
-    """Work Cards"""
+    """Work Card"""
 
     slug = models.SlugField()
     title = models.CharField(max_length=20, verbose_name="bold card title")
@@ -28,6 +28,8 @@ class Work(models.Model):
     backside_stack = models.CharField(max_length=50, verbose_name="light card-backside stack")
     github_link = models.CharField(max_length=100, verbose_name="github link")
     direct_link = models.CharField(max_length=100, verbose_name="direct link")
+    background_color = models.CharField(max_length=200, verbose_name="linear gradient for card. Put code bgc: ....",
+                                        blank=True, null=True)
 
     def __str__(self):
         return self.title
@@ -37,24 +39,25 @@ class Work(models.Model):
         verbose_name_plural = "Work Cards"
 
 
-class Skill(models.Model):
-    """Skill direction"""
+class Technology(models.Model):
+    """Technology direction"""
 
-    skill_id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=15)
+    tech_id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=30, verbose_name="short name of technology", default="techName")
+    description = models.CharField(max_length=100)
+    image = models.ImageField(blank=True, null=True)
 
     def __str__(self):
         return self.name
 
 
-class Technology(models.Model):
-    """Technology direction"""
+class Skill(models.Model):
+    """Skill direction"""
 
-    name = models.CharField(max_length=30, verbose_name="short name of technology", default="techName")
-    description = models.CharField(max_length=100)
-    image = models.ImageField(blank=True, null=True)
-    skill_id = models.ForeignKey(Skill, on_delete=models.CASCADE, null=True, related_name='Skill_id_fk',
-                           verbose_name='Skill')
+    skill_id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=15)
+    tech_id = models.ManyToManyField(Technology, null=True, blank=True, verbose_name="Technology",
+                                     related_name="Technology_Skill")
 
     def __str__(self):
         return self.name

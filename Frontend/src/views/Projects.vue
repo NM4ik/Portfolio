@@ -6,7 +6,7 @@
     <moving-title>PROJECTS</moving-title>
 
     <div class="projects__inner">
-      <div class="cards">
+      <!-- <div class="cards"> -->
         <!--  ПОПРОБОВАТЬ ВСТАВИТЬ ДАННЫЕ ИЗ БЭКЕНДА В ЭТУ КАРТОЧКУ ЕСЛИ НЕ ПОЛУЧАЕТСЯ ВСТАВИТЬ ИХ В КОМПОНЕНТ
           
           
@@ -49,20 +49,19 @@
             </div>
           </div>
         </div> -->
-
-        <work-card></work-card>
-        <work-card></work-card>
-        <work-card></work-card>
-        <work-card></work-card>
+        <work-card v-bind:works="works"></work-card>
       </div>
     </div>
-  </div>
+  <!-- </div> -->
 </template>
 
 <script>
-import WorkCard from "../components/UI/WorkCard.vue";
+
+import WorkCard from "../components/WorkCard.vue";
 import BreadCrumbs from "../components/UI/BreadCrumbs.vue";
 import MovingTitle from "../components/UI/MovingTitle.vue";
+import axios from "axios";
+
 export default {
   name: "Home",
   components: {
@@ -70,13 +69,31 @@ export default {
     BreadCrumbs,
     MovingTitle,
   },
-  data: () => ({
-    //null
-  }),
+  data() {
+    return {
+      works: [],
+    };
+  },
+
+  methods: {
+    async fetchWorks() {
+      try {
+        const responce = await axios.get("http://127.0.0.1:8000/works/");
+        this.works = responce.data;
+        console.log(responce)
+      } catch (e) {
+        alert("error");
+      }
+    },
+  },
+
+  created() {
+    this.fetchWorks();
+  },
+
   mounted() {
     const content = document.querySelector(".container");
     let currenPos = window.pageYOffset;
-
     const callDistort = function() {
       const newPos = window.pageYOffset;
       const diff = newPos - currenPos;
@@ -86,7 +103,6 @@ export default {
       currenPos = newPos;
       requestAnimationFrame(callDistort);
     };
-
     callDistort();
   },
 };
@@ -95,11 +111,12 @@ export default {
 .container
   display: block
 
-.cards
-  display: flex
-  justify-content: space-around
-  align-items: center
-  flex-wrap: wrap
-  transition: transform 0.1s
-  will-change: transform
+// .cards
+//   display: flex
+//   justify-content: space-around
+//   align-items: center
+//   flex-wrap: wrap
+//   transition: transform 0.1s
+//   will-change: transform
+  
 </style>
