@@ -47,10 +47,8 @@
 export default {
   props: ["works"],
 
-  mounted() {
+  methods() {
     const card = document.querySelectorAll(".card__inner");
-    if(card) console.log('hi')
-
     for (let i = 0; i < card.length; i++) {
       card[i].onclick = function(e) {
         card[i].classList.toggle("is-flipped");
