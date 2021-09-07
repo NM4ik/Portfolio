@@ -2,7 +2,7 @@
   <div class="home__inner">
     <div class="gretting">
       <span class="background__gretting parallaxer" data-speed="2">HELLO</span>
-      <span class="gretting__decription parallax" data-speed="5"
+      <span class="gretting__decription noParallax" data-speed="5"
         >I am a novice programmer, designer and friendly neighbor
         <fa icon="hand-spock" class="hand__spock"
       /></span>
@@ -23,14 +23,20 @@
 
 <script>
 import MyButton from "@/components/UI/MyButton";
+import TextMe from "@/components/UI/TextMe";
 export default {
   name: "Home",
   components: {
     MyButton,
+    TextMe
   },
-  data: () => ({
-    arrowRight: require("@/assets/images/icons/arrowRight.svg"),
-  }),
+
+  data(){
+    return{
+      isModalOpen: false,
+    }
+  },
+
   mounted() {
     document.addEventListener("mousemove", parallax);
     function parallax(e) {
@@ -49,6 +55,7 @@ export default {
 <style scoped lang="sass">
 .home__inner
   background-color: none
+  position: relative
   align-items: center
   padding: 0 70px
 

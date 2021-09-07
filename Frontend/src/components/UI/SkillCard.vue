@@ -1,14 +1,16 @@
 <template>
   <div class="skills__col">
-    <div class="col__text">Knowledge and experience in the layout of landing pages and sites</div>
-    <div class="col__img"><img src="images/bootstrap_logo.svg" alt=""></div>
+    <div v-for="tech in sk.tech_id" :key="tech.tech_id">
+      <div class="col__text">{{ tech.tech_id }}</div>
+      <div class="col__img"><img src="images/bootstrap_logo.svg" alt="" /></div>
+    </div>
   </div>
 </template>
 
 <script>
-  export default {
-    
-  }
+export default {
+  props: ["skill"],
+};
 </script>
 
 <style lang="sass" scoped>

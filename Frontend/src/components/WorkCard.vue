@@ -2,15 +2,15 @@
   <div>
     <div class="cards">
       <!-- <div v-for="work in works" :key="work.title"> -->
-      <div class="card" v-for="work in works" :key="work.title">
+      <div class="card" v-for="work in works" :key="work.id">
         <span></span>
         <span></span>
         <span></span>
         <span></span>
-        <div class="card__inner">
+        <div class="card__inner" v-on:click="FlipCard()">
           <div
             class="card__face card__face--front"
-            style="background: lin ear-gradient(360deg, #9ebd13 0%, #008552 100%);"
+            :style="{background: `${work.background_color}`}"
           >
             <h1>{{ work.title }}</h1>
           </div>
@@ -46,26 +46,20 @@
 <script>
 export default {
   props: ["works"],
+  data() {
+    return {
+    };
+  },
 
-  methods() {
-    const card = document.querySelectorAll(".card__inner");
-    for (let i = 0; i < card.length; i++) {
-      card[i].onclick = function(e) {
-        card[i].classList.toggle("is-flipped");
-      };
+  methods:{
+    FlipCard(){
+      const card = document.querySelectorAll(".card__inner");
+      for (let i = 0; i < card.length; i++) {
+        card[i].onclick = function(e) {
+          card[i].classList.toggle("is-flipped");
+        };
+      }
     }
-
-    // const cards = document.querySelector(".cards");
-    // cards.getElementsByClassName("card")[0].addEventListener("click", function() {
-    //     this.querySelector(".card__inner").classList.toggle("is-flipped");
-    // });
-
-    // const cards = document.querySelector(".cards");
-    // cards.querySelectorAll(".card").forEach(function(card) {
-    //   card.addEventListener("click", function() {
-    //     this.querySelector(".card__inner").classList.toggle("is-flipped");
-    //   });
-    // });
   },
 };
 </script>
@@ -113,17 +107,17 @@ export default {
       width: 0%
       bottom: -3px
       height: 1px
-      background-color: #00B74A
+      background-color: #FF9321
       transition: 0.2s
     &:hover::before
       width: 100%
       left: 0
   .backside__icons
     .icon
-      margin-right: 10px
+      margin-right: 15px
       width: 21px
       height: 21px
-      color: #00B74A
+      color: #FF9321
 
 .card__inner
   width: 100%

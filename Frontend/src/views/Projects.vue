@@ -5,17 +5,23 @@
     </router-link>
     <moving-title>PROJECTS</moving-title>
     <div class="projects__inner">
+      <div v-if="errored">
+        <p>
+          We're sorry, we're not able to retrieve works at the moment, please
+          try back later
+        </p>
+      </div>
+      <div v-if="loading">Loading...</div>
       <work-card v-bind:works="works"></work-card>
     </div>
   </div>
 </template>
 
 <script>
-
 import WorkCard from "../components/WorkCard.vue";
 import BreadCrumbs from "../components/UI/BreadCrumbs.vue";
 import MovingTitle from "../components/UI/MovingTitle.vue";
-import axios from "axios";
+import getAPI from "@/api/getAPI.js";
 
 export default {
   name: "Home",
@@ -27,18 +33,21 @@ export default {
   data() {
     return {
       works: [],
+      loading: true,
+      errored: false,
     };
   },
 
   methods: {
     async fetchWorks() {
-      try {
-        const responce = await axios.get("http://127.0.0.1:8000/works/");
-        this.works = responce.data;
-        console.log(responce)
-      } catch (e) {
-        alert("error");
-      }
+      getAPI
+        .get("works/")
+        .then((response) => (this.works = response.data))
+        .catch((error) => {
+          console.log(error);
+          this.errored = true;
+        })
+        .finally(() => (this.loading = false));
     },
   },
 
@@ -66,6 +75,9 @@ export default {
 .container
   display: block
 
+.projects__inner
+  text-align: center
+
 // .cards
 //   display: flex
 //   justify-content: space-around
@@ -73,5 +85,4 @@ export default {
 //   flex-wrap: wrap
 //   transition: transform 0.1s
 //   will-change: transform
-  
 </style>

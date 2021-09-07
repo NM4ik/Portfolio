@@ -1,23 +1,67 @@
 <template>
   <div>
-    <div class="skills__subtitle"><slot name="subtitle"></slot></div>
-    <div class="skills__block"><slot name="skillcard"></slot></div>
+    <div v-for="sk in skill" :key="sk.id">
+      <div class="skills__subtitle">{{ sk.name }}</div>
+      <div class="skill_blocks">
+        <div class="skills__col" v-for="tech in sk.tech_id" :key="tech.tech_id">
+          <div class="col__text">{{ tech.description }}</div>
+          <div class="col__img">
+            <img :src="tech.image" alt="" />
+            <!-- Разобраться с загрузкой картинки -->
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-  export default {
-    
-  }
+import SkillCard from "./UI/SkillCard.vue";
+export default {
+  components: { SkillCard },
+  props: ["skill"],
+};
 </script>
 
 <style lang="sass" scoped>
+.skill_blocks
+  display: flex
+  flex-wrap: wrap
+  justify-content: space-beetwen
+
+.skills__col
+  margin: 10px
+  transition: 0.3s linear
+  display: flex
+  margin-bottom: 15px
+  justify-content: space-between
+  align-items: center
+  background-color: #1C1C1C
+  flex-basis: 31%
+  height: 120px
+  .col__text
+    margin-left: 25px
+    margin-right: 15px
+    font-weight: 400
+    font-size: 14px
+    color: white
+  .col__img
+    display: flex
+    justify-content: center
+    align-items: center
+    margin-right: 25px
+    width: 90%
+    height: 100%
+  &:hover
+    transform: scale(1.05)
+
 .skills__block
   display: flex
   flex-wrap: wrap
   justify-content: space-between
 
-.skills__subtitle 
+.skills__subtitle
+  color: black
   font-weight: 400
   font-size: 18px
   margin-top: 25px
