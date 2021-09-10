@@ -40,28 +40,6 @@
         <div class="skills__title">Skills</div>
         <skills v-bind:skill="skill"> </skills>
       </div>
-
-      <!-- <div v-for="sk in skill" :key="sk.skill_id">   РАБОТАЕТ
-        <h1>{{ sk.name }}</h1>
-          <div v-for="tech in sk.tech_id" :key="tech.tech_id">
-            {{tech.tech_id}}
-            
-            {{tech.name}}
-          </div>
-      </div> -->
-
-      <!-- Не отображается подсписок навыков( FRONT(view) : html, css (NOT VIEW) ) -->
-
-      <!-- <div class="skills">
-        <div class="skills__title">Skills</div>
-
-        <div v-for="sk in skill" :key="sk.id">
-          <div class="skills__subtitle">{{sk.name}}</div>
-          <div v-for="tech in skill" :key="tech.id">
-            {{ tech.name }}
-          </div>
-        </div>
-      </div>-->
     </div>
   </div>
 </template>

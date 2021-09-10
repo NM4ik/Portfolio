@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="cards">
-      <!-- <div v-for="work in works" :key="work.title"> -->
       <div class="card" v-for="work in works" :key="work.id">
         <span></span>
         <span></span>
@@ -10,7 +9,7 @@
         <div class="card__inner" v-on:click="FlipCard()">
           <div
             class="card__face card__face--front"
-            :style="{background: `${work.background_color}`}"
+            :style="work.background_color"
           >
             <h1>{{ work.title }}</h1>
           </div>
@@ -38,7 +37,6 @@
           </div>
         </div>
       </div>
-      <!-- </div> -->
     </div>
   </div>
 </template>
